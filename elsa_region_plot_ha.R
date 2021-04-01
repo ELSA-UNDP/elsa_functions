@@ -1,0 +1,17 @@
+
+require(ggplot2)
+require(glue)
+
+elsa_region_plot_ha = function(.data,
+                            scenario,
+                            plot_rows = 2){
+        ggplot(.data, aes(x=action, fill=action)) +
+        geom_bar(aes(y=ha),
+                 stat = 'identity',
+                 show.legend = FALSE) +
+        scale_fill_manual(values= elsa_pallete)+
+        labs(x = glue('ELSA Action - {scenario}'),
+             y = 'Total Hectares in Region') +
+        facet_wrap(~name,
+                   nrow = plot_rows)
+}
